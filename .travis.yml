@@ -17,6 +17,10 @@ addons:
       - chromium-chromedriver
 
 cache:
+  directories:
+    - $HOME/.composer/cache
+    - $HOME/.npm
+    - $HOME/ci/vendor/
 
 env:
   global:
@@ -169,10 +173,14 @@ before_install:
       nvm install 14.15.0
     fi
   - npm install
+  - pwd
   - cd ../..
+  - pwd
   - composer self-update 1.10.12
-  - composer create-project -n --no-dev --prefer-dist blackboard-open-source/moodle-plugin-ci:v2 ci ^2
+  - composer create-project -n --no-dev --prefer-dist moodlehq/moodle-plugin-ci:v2 ci ^2
   - export PATH="$(cd ci/bin; pwd):$(cd ci/vendor/bin; pwd):$PATH"
+  - export
+  - ls -al
 
 install:
   - moodle-plugin-ci install
@@ -186,11 +194,12 @@ script:
   - moodle-plugin-ci savepoints
   - moodle-plugin-ci phpdoc
   - moodle-plugin-ci behat --profile chrome
-  # - |
-  #   # Grunt fails since version 3.8
-  #   # https://moodle.org/mod/forum/discuss.php?d=389744
-  #   if [ $MOODLE_BRANCH != "master" && $MOODLE_BRANCH != "MOODLE_38_STABLE" && $MOODLE_BRANCH != "MOODLE_39_STABLE"]; then
-  #     moodle-plugin-ci grunt
-  #   fi
+  # Grunt fails since version 3.8
+  # https://moodle.org/mod/forum/discuss.php?d=389744
+  - moodle-plugin-ci grunt || [ \
+        "$MOODLE_BRANCH" != 'master' -a \
+        "$MOODLE_BRANCH" != 'MOODLE_310_STABLE' -a \
+        "$MOODLE_BRANCH" != 'MOODLE_39_STABLE' -a \
+        "$MOODLE_BRANCH" != 'MOODLE_38_STABLE' ]
   # - moodle-plugin-ci mustache # Not working
   # - moodle-plugin-ci phpunit # Not working
