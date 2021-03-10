@@ -677,7 +677,12 @@ class mod_bigbluebuttonbn_lib_testcase extends advanced_testcase {
         list($bbactivitycontext, $bbactivitycm, $bbactivity) = $this->create_instance();
         $result = bigbluebuttonbn_check_updates_since($bbactivitycm, 0);
         $this->assertEquals(
-                '{"configuration":{"updated":false},"contentfiles":{"updated":false},"introfiles":{"updated":false},"completion":{"updated":false}}',
+                '{'.
+                    '"configuration":{"updated":false},'.
+                    '"contentfiles":{"updated":false},'.
+                    '"introfiles":{"updated":false},'.
+                    '"completion":{"updated":false}'.
+                '}',
                 json_encode($result)
         );
     }
