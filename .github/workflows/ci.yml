@@ -1,3 +1,7 @@
+# Credit for this script to Tim Hunt
+# https://github.com/moodlehq/moodle-plugin-ci/issues/48
+# https://github.com/moodleou/moodle-filter_embedquestion/tree/main/.github/workflows
+
 name: Moodle plugin CI
 on: [push, pull_request]
 
