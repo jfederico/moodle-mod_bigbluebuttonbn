@@ -60,4 +60,3 @@ $bbbsettings->bigbluebuttonbn_settings_extended();
 $bbbsettings->bigbluebuttonbn_settings_experimental();
 
 $settings = null;
-

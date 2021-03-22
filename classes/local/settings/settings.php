@@ -118,15 +118,16 @@ class settings {
      * @throws \coding_exception
      */
     public function bigbluebuttonbn_settings_general($sectioname) {
-        $settingsgeneral = new admin_settingpage($sectioname, get_string('config_general', 'bigbluebuttonbn'),
+        $settingsgeneral = new admin_settingpage($sectioname, get_string('pluginname', 'bigbluebuttonbn'),
             'moodle/site:config', !((boolean) validator::section_general_shown()) && ($this->moduleenabled));
         if ($this->admin->fulltree) {
             // Configuration for BigBlueButton.
             $item = new admin_setting_heading('bigbluebuttonbn_config_general',
-                '',
+                get_string('config_general', 'bigbluebuttonbn'),
                 get_string('config_general_description', 'bigbluebuttonbn'));
-
             $settingsgeneral->add($item);
+
+            // BigBlueButton URL.
             $item = new admin_setting_configtext('bigbluebuttonbn_server_url',
                 get_string('config_server_url', 'bigbluebuttonbn'),
                 get_string('config_server_url_description', 'bigbluebuttonbn'),
@@ -136,6 +137,7 @@ class settings {
                 $item,
                 $settingsgeneral
             );
+            // BigBlueButton Shared Secret.
             $item = new admin_setting_configtext('bigbluebuttonbn_shared_secret',
                 get_string('config_shared_secret', 'bigbluebuttonbn'),
                 get_string('config_shared_secret_description', 'bigbluebuttonbn'),
@@ -145,11 +147,13 @@ class settings {
                 $item,
                 $settingsgeneral
             );
-            $settingsgeneral->add($item);
+
+            // Configuration for BigBlueButton Meetings.
             $item = new admin_setting_heading('bigbluebuttonbn_config_default_messages',
                 get_string('config_default_messages', 'bigbluebuttonbn'),
                 get_string('config_default_messages_description', 'bigbluebuttonbn'));
             $settingsgeneral->add($item);
+            // BigBlueButton meeting default welcome message.
             $item = new admin_setting_configtextarea('bigbluebuttonbn_welcome_default',
                 get_string('config_welcome_default', 'bigbluebuttonbn'),
                 get_string('config_welcome_default_description', 'bigbluebuttonbn'),
