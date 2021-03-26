@@ -533,36 +533,31 @@ class view {
         }
         $id = 'recording-' . $target . '-' . $recording['recordID'];
         $onclick = 'M.mod_bigbluebuttonbn.recordings.recording' . ucfirst($data['action']) . '(this); return false;';
-        if ((boolean) config::get('recording_icons_enabled')) {
-            // With icon for $manageaction.
-            $iconattributes = array('id' => $id, 'class' => 'iconsmall');
-            $linkattributes = array(
-                'id' => $id,
-                'onclick' => $onclick,
-                'data-action' => $data['action'],
+
+        // With icon for $manageaction.
+        $iconattributes = array('id' => $id, 'class' => 'iconsmall');
+        $linkattributes = array(
+            'id' => $id,
+            'onclick' => $onclick,
+            'data-action' => $data['action'],
+        );
+        if (!isset($recording['imported'])) {
+            $linkattributes['data-links'] = recording::bigbluebuttonbn_count_recording_imported_instances(
+                $recording['recordID']
             );
-            if (!isset($recording['imported'])) {
-                $linkattributes['data-links'] = recording::bigbluebuttonbn_count_recording_imported_instances(
-                    $recording['recordID']
-                );
-            }
-            if (isset($data['disabled'])) {
-                $iconattributes['class'] .= ' fa-' . $data['disabled'];
-                $linkattributes['class'] = 'disabled';
-                unset($linkattributes['onclick']);
-            }
-            $icon = new pix_icon(
-                'i/' . $data['tag'],
-                get_string('view_recording_list_actionbar_' . $data['action'], 'bigbluebuttonbn'),
-                'moodle',
-                $iconattributes
-            );
-            return $OUTPUT->action_icon('#', $icon, null, $linkattributes, false);
         }
-        // With text for $manageaction.
-        $linkattributes = array('title' => get_string($data['tag']), 'class' => 'btn btn-xs btn-danger',
-            'onclick' => $onclick);
-        return $OUTPUT->action_link('#', get_string($data['action']), null, $linkattributes);
+        if (isset($data['disabled'])) {
+            $iconattributes['class'] .= ' fa-' . $data['disabled'];
+            $linkattributes['class'] = 'disabled';
+            unset($linkattributes['onclick']);
+        }
+        $icon = new pix_icon(
+            'i/' . $data['tag'],
+            get_string('view_recording_list_actionbar_' . $data['action'], 'bigbluebuttonbn'),
+            'moodle',
+            $iconattributes
+        );
+        return $OUTPUT->action_icon('#', $icon, null, $linkattributes, false);
     }
 
     /**

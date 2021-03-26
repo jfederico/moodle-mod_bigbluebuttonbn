@@ -112,7 +112,6 @@ class mod_bigbluebuttonbn_mod_form extends moodleform_mod {
         $PAGE->requires->strings_for_js(array_keys(view::bigbluebuttonbn_get_strings_for_js()), 'bigbluebuttonbn');
         $jsvars['participantData'] = roles::bigbluebuttonbn_get_participant_data($context, $bigbluebuttonbn);
         $jsvars['participantList'] = $participantlist;
-        $jsvars['iconsEnabled'] = (boolean) $cfg['recording_icons_enabled'];
         $jsvars['pixIconDelete'] = (string) $OUTPUT->pix_icon('t/delete', get_string('delete'), 'moodle');
         $PAGE->requires->yui_module('moodle-mod_bigbluebuttonbn-modform',
             'M.mod_bigbluebuttonbn.modform.init', array($jsvars));

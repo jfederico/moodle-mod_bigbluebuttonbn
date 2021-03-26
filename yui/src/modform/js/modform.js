@@ -286,10 +286,8 @@ M.mod_bigbluebuttonbn.modform = {
         cell3.width = "20px";
         removeHtml = this.strings.remove;
         removeClass = "btn btn-secondary btn-sm";
-        if (this.bigbluebuttonbn.iconsEnabled) {
-            removeHtml = this.bigbluebuttonbn.pixIconDelete;
-            removeClass = "btn btn-link";
-        }
+        removeHtml = this.bigbluebuttonbn.pixIconDelete;
+        removeClass = "btn btn-link";
         innerHTML = "";
         if (canDelete) {
             innerHTML = '<a class="' + removeClass + '" onclick="M.mod_bigbluebuttonbn.modform.participantRemove(\'';

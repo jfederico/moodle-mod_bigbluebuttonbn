@@ -88,11 +88,6 @@ $CFG->bigbluebuttonbn['shared_secret'] = '8cd8ef52e8e101574e400365b55e11a6';
  *  $CFG->bigbluebuttonbn['recording_editable'] = 0;
  */
 
-/* When the value is set to 1 (checked) the list of recordings in both
- * bigbluebuttonbn and recordingbn are generated using icons.
- * $CFG->bigbluebuttonbn['recording_icons_enabled'] = 1;
- */
-
 /*
  * 1.3. CONFIGURATION FOR "IMPORT RECORDINGS" FEATURE
  *
