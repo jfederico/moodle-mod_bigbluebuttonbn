@@ -48,7 +48,8 @@ M.mod_bigbluebuttonbn.recordings = {
             callback: {
                 success: function (data) {
                     var bbinfo = data.data;
-                    if (bbinfo.profile_features.indexOf('all') != -1 || bbinfo.profile_features.indexOf('showrecordings') != -1) {
+                    if (bbinfo.recordings_html === false &&
+                        (bbinfo.profile_features.indexOf('all') != -1 || bbinfo.profile_features.indexOf('showrecordings') != -1)) {
                         thisbbb.locale = bbinfo.locale;
                         thisbbb.datatable.columns = bbinfo.data.columns;
                         thisbbb.datatable.data = thisbbb.datatableInitFormatDates(bbinfo.data.data);
@@ -190,7 +191,8 @@ M.mod_bigbluebuttonbn.recordings = {
             callback: {
                 success: function (data) {
                     var bbinfo = data.data;
-                    if (bbinfo.profile_features.indexOf('all') != -1 || bbinfo.profile_features.indexOf('showrecordings') != -1) {
+                    if (bbinfo.recordings_html === false &&
+                        (bbinfo.profile_features.indexOf('all') != -1 || bbinfo.profile_features.indexOf('showrecordings') != -1)) {
                         thisbbb.locale = bbinfo.locale;
                         thisbbb.datatable.columns = bbinfo.data.columns;
                         thisbbb.datatable.data = thisbbb.datatableInitFormatDates(bbinfo.data.data);
@@ -449,6 +451,7 @@ M.mod_bigbluebuttonbn.recordings = {
         var node = nodeelement.ancestor('tr');
         return (node.getAttribute('data-imported') === 'true');
     }
+
 };
 // This file is part of Moodle - http://moodle.org/
 //
