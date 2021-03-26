@@ -107,7 +107,7 @@ class import_view implements renderable, templatable {
             $PAGE->requires->yui_module('moodle-mod_bigbluebuttonbn-broker', 'M.mod_bigbluebuttonbn.broker.init',
                 array());
             $PAGE->requires->yui_module('moodle-mod_bigbluebuttonbn-recordings', 'M.mod_bigbluebuttonbn.recordings.init',
-                array('recordings_html' => true));
+                array());
         }
     }
 
@@ -119,5 +119,4 @@ class import_view implements renderable, templatable {
     public function export_for_template(renderer_base $output) {
         return $this->context;
     }
-
 }

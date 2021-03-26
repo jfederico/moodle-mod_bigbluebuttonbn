@@ -276,15 +276,6 @@ class view {
                 array('id' => 'bigbluebuttonbn_recordings_table'));
         }
         // There are recordings for this meeting.
-        // JavaScript variables for recordings.
-        $jsvars += array(
-            'recordings_html' => $bbbsession['bigbluebuttonbn']->recordings_html == '1',
-        );
-        // If there are meetings with recordings load the data to the table.
-        if ($bbbsession['bigbluebuttonbn']->recordings_html) {
-            // Render a plain html table.
-            return recording::bigbluebuttonbn_output_recording_table($bbbsession, $recordings) . "\n";
-        }
         // JavaScript variables for recordings with YUI.
         $jsvars += array(
             'bbbid' => $bbbsession['bigbluebuttonbn']->id,

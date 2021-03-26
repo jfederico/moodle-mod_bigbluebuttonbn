@@ -885,7 +885,6 @@ class broker {
         $tabledata['ping_interval'] = (int) config::get('waitformoderator_ping_interval') * 1000;
         $tabledata['locale'] = \mod_bigbluebuttonbn\plugin::bigbluebuttonbn_get_localcode();
         $tabledata['profile_features'] = $typeprofiles[0]['features'];
-        $tabledata['recordings_html'] = $bbbsession['bigbluebuttonbn']->recordings_html == '1';
 
         $data = array();
         // Build table content.

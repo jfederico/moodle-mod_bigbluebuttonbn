@@ -95,9 +95,6 @@ class instance {
         if (!isset($bigbluebuttonbn->recordhidebutton)) {
             $bigbluebuttonbn->recordhidebutton = 0;
         }
-        if (!isset($bigbluebuttonbn->recordings_html)) {
-            $bigbluebuttonbn->recordings_html = 0;
-        }
         if (!isset($bigbluebuttonbn->recordings_deleted)) {
             $bigbluebuttonbn->recordings_deleted = 0;
         }

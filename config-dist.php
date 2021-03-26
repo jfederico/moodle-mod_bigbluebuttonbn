@@ -228,19 +228,7 @@ $CFG->bigbluebuttonbn['shared_secret'] = '8cd8ef52e8e101574e400365b55e11a6';
  * 1.10. GENERAL CONFIGURATION FOR RECORDINGS UI
  *
  **/
-/*
- * When the value is set to 1 (checked) the bigbluebuttonbn resources
- * will show the recodings in an html table by default.
- * $CFG->bigbluebuttonbn['recordings_html_default'] = 0;
- */
-
-/*
- * When the value is set to 1 (checked) the 'html ui' capability can be
- * enabled/disabled by the user creating or editing the resource.
- * $CFG->bigbluebuttonbn['recordings_html_editable'] = 0;
- */
-
-/*
+ /*
  * When the value is set to 1 (checked) the bigbluebuttonbn resources
  * will show the recodings belonging to deleted activities as part of the list.
  * $CFG->bigbluebuttonbn['recordings_deleted_default'] = 1;
