@@ -465,8 +465,9 @@ class meeting {
 
             // Pull the Bearer from the headers.
             if (!array_key_exists('Authorization', $headers)) {
-                $msg = 'Authorization failed';
-                header('HTTP/1.0 400 Bad Request. ' . $msg);
+                $errormessage = 'HTTP/1.0 400 Bad Request. Authorization failed';
+                debugging($errormessage, DEBUG_DEVELOPER);
+                header($errormessage);
                 return;
             }
             $authorization = explode(" ", $headers['Authorization']);
@@ -485,8 +486,9 @@ class meeting {
             // Convert JSON string to a JSON object.
             $jsonobj = json_decode($jsonstr);
         } catch (Exception $e) {
-            $msg = 'Caught exception: ' . $e->getMessage();
-            header('HTTP/1.0 400 Bad Request. ' . $msg);
+            $errormessage = 'HTTP/1.0 400 Bad Request. Caught exception: ' . $e->getMessage();
+            debugging($errormessage, DEBUG_DEVELOPER);
+            header($errormessage);
             return;
         }
 
@@ -494,8 +496,9 @@ class meeting {
         $meetingidelements = explode('[', $jsonobj->{'meeting_id'});
         $meetingidelements = explode('-', $meetingidelements[0]);
         if (!isset($bigbluebuttonbn) || $bigbluebuttonbn->meetingid != $meetingidelements[0]) {
-            $msg = 'The activity may have been deleted';
-            header('HTTP/1.0 410 Gone. ' . $msg);
+            $errormessage = 'HTTP/1.0 410 Gone. The activity may have been deleted';
+            debugging($errormessage, DEBUG_DEVELOPER);
+            header($errormessage);
             return;
         }
 
@@ -508,9 +511,13 @@ class meeting {
         if ($eventcount === 1) {
             // Process the events.
             self::process_meeting_events($instance, $jsonobj);
-            header('HTTP/1.0 200 Accepted. Enqueued.');
+            $errormessage = 'HTTP/1.0 200 Accepted. Enqueued.';
+            debugging($errormessage, DEBUG_DEVELOPER);
+            header($errormessage);
         } else {
-            header('HTTP/1.0 202 Accepted. Already processed.');
+            $errormessage = 'HTTP/1.0 202 Accepted. Already processed.';
+            debugging($errormessage, DEBUG_DEVELOPER);
+            header($errormessage);
         }
     }
 
@@ -525,6 +532,7 @@ class meeting {
         $recordid = $jsonobj->{'internal_meeting_id'};
         $attendees = $jsonobj->{'data'}->{'attendees'};
         foreach ($attendees as $attendee) {
+            debugging(json_encode($attendee), DEBUG_DEVELOPER);
             $userid = $attendee->{'ext_user_id'};
             $overrides['meetingid'] = $meetingid;
             $overrides['userid'] = $userid;
